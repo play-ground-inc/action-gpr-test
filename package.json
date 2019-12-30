@@ -1,0 +1,13 @@
+{
+  "name": "action-gpr-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "vipulrawat <vipulrawat.imi@live.in>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "jest": "^24.9.0"
+  }
+}
