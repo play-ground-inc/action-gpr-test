@@ -35,7 +35,7 @@ jobs:
       - name: Bump package.json version
         run: |
           npm version patch
-          git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/play-ground-inc/action-gpr-test HEAD:master"
+          git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/play-ground-inc/action-gpr-test"
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
