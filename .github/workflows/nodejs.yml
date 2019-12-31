@@ -38,7 +38,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@play-ground-inc'
       - run: yarn install
-      - run: yarn publish
+      - run: yarn publish --patch
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
