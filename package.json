@@ -5,7 +5,8 @@
   "author": "vipulrawat <vipulrawat.imi@live.in>",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "release-minor": "release-it minor"
   },
   "dependencies": {
     "jest": "^24.9.0",

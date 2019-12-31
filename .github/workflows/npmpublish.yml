@@ -28,14 +28,7 @@ jobs:
           scope: "@play-ground-inc"
       - run: yarn install --frozen-lockfile
       - name: Setup GIT
-        run: |
-          git checkout master
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git config user.name "$GITHUB_ACTOR"
-      - name: Bump package.json version
-        run: |
-          npm version patch
-          git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/play-ground-inc/action-gpr-test"
+        run: yarn release-minor
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
