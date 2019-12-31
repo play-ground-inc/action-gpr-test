@@ -29,9 +29,12 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: git config --global user.name 'Vipul Rawat'
       - run: git config --global user.email 'vipulrawat@users.noreply.github.com'
-      - run: git remote set-url origin https://${GITHUB_ACTOR}:${PAT}@github.com/play-ground-inc/action-gpr-test
+      - run: git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/play-ground-inc/action-gpr-test
       - run: npm version patch -m "bump"
-      - run: git push origin HEAD:master
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
