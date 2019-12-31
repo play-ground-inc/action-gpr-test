@@ -31,7 +31,7 @@ jobs:
       - run: git config --global user.email 'vipulrawat@users.noreply.github.com'
       - run: git remote set-url origin https://play-ground-inc:${GITHUB_TOKEN}@github.com/action-gpr-test
       - run: npm version patch -m "bump"
-      - run: git push && git push --tags
+      - run: git push origin HEAD:master
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
