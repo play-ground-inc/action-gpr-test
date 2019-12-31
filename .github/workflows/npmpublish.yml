@@ -27,6 +27,8 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: "@play-ground-inc"
       - run: yarn install --frozen-lockfile
+      - run: git config --global user.name 'Vipul Rawat'
+      - run: git config --global user.email 'vipulrawat@users.noreply.github.com'
       - run: git remote set-url origin https://play-ground-inc:${GITHUB_TOKEN}@github.com/action-gpr-test
       - run: npm version patch -m "bump"
       - run: git push && git push --tags
