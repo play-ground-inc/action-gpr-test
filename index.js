@@ -12,8 +12,13 @@ function pow(number, power) {
   return Math.pow(number, power);
 }
 
+function totest(number) {
+  return number;
+}
+
 module.exports = {
   add,
   multiply,
-  pow
+  pow,
+  totest
 }
