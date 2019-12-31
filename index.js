@@ -16,9 +16,17 @@ function totest(number) {
   return number;
 }
 
+function divide(a, b) {
+  if (b === 0) {
+    throw new Error('Seriously! 0?')
+  }
+  return a/b;
+}
+
 module.exports = {
   add,
   multiply,
   pow,
-  totest
+  totest,
+  divide
 }
