@@ -29,6 +29,8 @@ jobs:
       - run: yarn install --frozen-lockfile
       - name: Bump version and push tag
         uses: wiktorj/github-tag-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
