@@ -1,5 +1,5 @@
 {
-  "name": "action-gpr-test",
+  "name": "@play-ground-inc/action-gpr-test",
   "version": "1.0.1",
   "main": "index.js",
   "author": "vipulrawat <vipulrawat.imi@live.in>",
