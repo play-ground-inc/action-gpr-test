@@ -8,7 +8,12 @@ function multiply(firstNumber) {
   }
 }
 
+function echo(msg) {
+  return msg;
+}
+
 module.exports = {
   add,
-  multiply
+  multiply,
+  echo
 }
