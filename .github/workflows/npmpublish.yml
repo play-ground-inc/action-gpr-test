@@ -1,9 +1,6 @@
 name: Node.js Package
 
-on:
-  push:
-    branches:
-      - master
+on: [push, pull_request]
 
 jobs:
   build:
@@ -19,6 +16,7 @@ jobs:
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -29,7 +27,6 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: git config --global user.name 'Vipul Rawat'
       - run: git config --global user.email 'vipulrawat@users.noreply.github.com'
-      - run: git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/play-ground-inc/action-gpr-test
       - run: npm version patch -m "bump"
       - name: Push changes
         uses: ad-m/github-push-action@master
