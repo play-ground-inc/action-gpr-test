@@ -27,10 +27,9 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: "@play-ground-inc"
       - run: yarn install --frozen-lockfile
-      - name: Bump version and push tag
-        uses: wiktorj/github-tag-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: git remote set-url origin https://play-ground-inc:${GITHUB_TOKEN}@github.com/action-gpr-test
+      - run: npm version patch -m "bump"
+      - run: git push && git push --tags
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
