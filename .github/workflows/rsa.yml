@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v1
+    - uses: actions/setup-node@v1
       with:
         node-version: 12
+    - name: Creates hmmmm!BANGG!!!
     - run: |
         pwd
         mkdir keys
@@ -19,12 +19,5 @@ jobs:
         openssl genrsa -out private.key 512
         openssl rsa -in private.key -outform PEM -pubout -out public.key
         ls
-#     - run: pwd
-#     - run: mkdir keys
-#     - run: cd keys
-#     - run: openssl genrsa -out private.key 512
-#     - run: openssl rsa -in private.key -outform PEM -pubout -out public.key
-#     - run: pwd
-#     - run: less keys/private.key
       env:
         CI: true
