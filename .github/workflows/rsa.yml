@@ -15,7 +15,7 @@ jobs:
     - run: mkdir keys && cd keys
     - run: openssl genrsa -out private.key 512
     - run: openssl rsa -in private.key -outform PEM -pubout -out public.key
-    - run: ls
-    - run: less private.key
+    - run: ls keys
+    - run: less keys/private.key
       env:
         CI: true
