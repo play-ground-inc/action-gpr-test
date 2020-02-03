@@ -11,12 +11,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12
-    - name: where i am?
     - run: pwd
-    - name: Generate keys
     - run: openssl genrsa -out private.key 256
         | openssl rsa -in private.key -outform PEM -pubout -out public.key
-    - name: checking if theres or not
     - run: ls
       env:
         CI: true
