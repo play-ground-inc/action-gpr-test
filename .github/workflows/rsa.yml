@@ -13,7 +13,8 @@ jobs:
         node-version: 12
     - run: pwd
     - run: openssl genrsa -out private.key 256
-        | openssl rsa -in private.key -outform PEM -pubout -out public.key
+    - run: openssl rsa -in private.key -outform PEM -pubout -out public.key
     - run: ls
+    - run: less private.key
       env:
         CI: true
