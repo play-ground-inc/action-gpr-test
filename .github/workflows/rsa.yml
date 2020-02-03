@@ -12,10 +12,11 @@ jobs:
       with:
         node-version: 12
     - run: pwd
-    - run: mkdir keys && cd keys
+    - run: mkdir keys
+    - run: cd keys
     - run: openssl genrsa -out private.key 512
     - run: openssl rsa -in private.key -outform PEM -pubout -out public.key
-    - run: ls keys
-    - run: less keys/private.key
+    - run: pwd
+#     - run: less keys/private.key
       env:
         CI: true
