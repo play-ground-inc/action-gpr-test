@@ -17,7 +17,7 @@ beforeAll(async () => {
   apolloServer = createdServer;
   conn = connection;
 
-  const [ createdUser1, createdUser2 ] = await seedTestDatabase();
+  // const [ createdUser1, createdUser2 ] = await seedTestDatabase();
 
 });
 
@@ -25,7 +25,7 @@ afterAll(async () => {
   // await apolloServer.stop();
   console.log('Inside after all');
 
-  console.log(typeof conn);
+  console.log(conn.dropDatabase);
   await conn.dropDatabase();
 
   await conn.close();
@@ -44,6 +44,6 @@ describe("User Resolver", () => {
     `;
     const { data } = await query(REGISTER_USER);
 
-    expect(data.users).toHaveLength(2);
+    expect(data.users).toHaveLength(0);
   });
 });
