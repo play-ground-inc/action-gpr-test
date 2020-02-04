@@ -17,7 +17,7 @@ beforeAll(async () => {
   apolloServer = createdServer;
   conn = connection;
 
-  // const [ createdUser1, createdUser2 ] = await seedTestDatabase();
+  const [ createdUser1, createdUser2 ] = await seedTestDatabase();
 
 });
 
@@ -46,7 +46,7 @@ describe("User Resolver", () => {
       query: REGISTER_USER
     });
 
-    expect(data.users).toHaveLength(0);
+    expect(data.users).toHaveLength(2);
   });
 });
 
