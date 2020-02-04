@@ -1,23 +1,36 @@
-name: RSA
+name: Run Tests
 
 on: [push]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+
+    container:
+      image: node:10.16-jessie
+
+    services:
+      postgres:
+        image: postgres:10.8
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12
-    - name: Creates hmmmm!BANGG!!!
-    - run: |
-        pwd
-        mkdir keys
-        cd keys
-        pwd
-        openssl genrsa -out private.key 512
-        openssl rsa -in private.key -outform PEM -pubout -out public.key
-        ls
-      env:
-        CI: true
+      - uses: actions/checkout@v1
+      - run: |
+          mkdir src/keys
+          cd src/keys
+          openssl genrsa -out access-token-private.key 512
+          openssl genrsa -out refresh-token-private.key 512
+          openssl rsa -in access-token-private.key -outform PEM -pubout -out access-token-public.key
+          openssl rsa -in access-token-private.key -outform PEM -pubout -out refresh-token-public.key
+      - run: yarn install --frozen-lockfile
+      - run: yarn test
+        env:
+          DB_HOST: postgres
+          DB_PORT: ${{ job.services.postgres.ports[5432] }}
