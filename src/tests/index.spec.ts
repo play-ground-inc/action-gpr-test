@@ -18,7 +18,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await apolloServer.stop();
+  // await apolloServer.stop();
   await conn.dropDatabase();
 
   await conn.close();
