@@ -10,6 +10,10 @@ let conn = null;
 beforeAll(async () => {
   const { apolloServer: createdServer, connection } = await bootstrapServer();
 
+  console.log('Inside before all');
+  console.log(typeof createdServer);
+  console.log(typeof connection);
+
   apolloServer = createdServer;
   conn = connection;
 
@@ -19,6 +23,9 @@ beforeAll(async () => {
 
 afterAll(async () => {
   // await apolloServer.stop();
+  console.log('Inside after all');
+
+  console.log(typeof apolloServer);
   await conn.dropDatabase();
 
   await conn.close();
