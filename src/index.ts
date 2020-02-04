@@ -2,7 +2,7 @@ import "reflect-metadata";
 
 import { createConnection } from "typeorm";
 import { buildSchema } from "type-graphql";
-import { ApolloServer, AuthenticationError } from 'apollo-server-express';
+import { ApolloServer, AuthenticationError } from 'apollo-server';
 import express from 'express';
 import bodyParser from 'body-parser';
 import { User } from "./entity/User";
@@ -62,16 +62,18 @@ export const bootstrapServer = async () => {
       playground: true,
     });
 
-    server.applyMiddleware({ app })
+    // server.applyMiddleware({ app })
   return { app, server, connection: conn };
 };
 
 if (require.main === module) {
   bootstrapServer().then(async ({ app, server }) => {
       // Start the server
-       app.listen(4000, () => {
-          console.log(`Server is running, GraphQL Playground available at 4000`);
-       });
+      //  app.listen(4000, () => {
+      //     console.log(`Server is running, GraphQL Playground available at 4000`);
+      //  });
+       const { url } = await server.listen(4000);
+        console.log(`Server is running, GraphQL Playground available at ${url}`);
   });
 }
 
