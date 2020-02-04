@@ -26,8 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-          mkdir src/utils/keys
-          cd src/utils/keys
+          mkdir src/keys
+          cd src/keys
           openssl genrsa -out access-token-private.key 512
           openssl genrsa -out refresh-token-private.key 512
           openssl rsa -in access-token-private.key -outform PEM -pubout -out access-token-public.key
