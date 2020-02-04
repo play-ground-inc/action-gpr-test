@@ -11,37 +11,68 @@ import { User } from "./entity/User";
 
 
 
+// export const bootstrapServer = async () => {
+//     const app = express();
+
+//     app.use(bodyParser.urlencoded({ extended: false }))
+//     app.use(bodyParser.json())
+
+//     const conn = await createConnection();
+
+//     const schema = await buildSchema({
+//         resolvers: [__dirname + "/**/*.resolver.ts"],
+//     });
+
+//     const server = new ApolloServer({
+//         schema,
+//         playground: true,
+//     });
+
+//     server.applyMiddleware({ app });
+
+//     return { app, server, connection: conn };
+// }
+
+// if (require.main === module) {
+//   bootstrapServer()
+//     .then(async ({ app }) => {
+//       // Start the server
+//       app.listen(4000, () => {
+//           console.log(`Server is running on port 4000, GraphQL Playground available at /graphql`);
+//       });
+//     })
+//     .catch((err) => console.error(err));
+// }
+
+
 export const bootstrapServer = async () => {
-    const app = express();
+      const app = express();
 
     app.use(bodyParser.urlencoded({ extended: false }))
     app.use(bodyParser.json())
+  const conn = await createConnection();
 
-    const conn = await createConnection();
+  const schema = await buildSchema({
+      resolvers: [__dirname + "/**/*.resolver.ts"],
+      validate: false,
+  });
 
-    const schema = await buildSchema({
-        resolvers: [__dirname + "/**/*.resolver.ts"],
+  const server = new ApolloServer({
+      schema,
+      playground: true,
     });
 
-    const server = new ApolloServer({
-        schema,
-        playground: true,
-    });
-
-    server.applyMiddleware({ app });
-
-    return { app, server, connection: conn };
-}
+    server.applyMiddleware({ app })
+  return { app, server, connection: conn };
+};
 
 if (require.main === module) {
-  bootstrapServer()
-    .then(async ({ app }) => {
+  bootstrapServer().then(async ({ app, server }) => {
       // Start the server
-      app.listen(4000, () => {
-          console.log(`Server is running on port 4000, GraphQL Playground available at /graphql`);
-      });
-    })
-    .catch((err) => console.error(err));
+       app.listen(4000, () => {
+          console.log(`Server is running, GraphQL Playground available at 4000`);
+       });
+  });
 }
 
 const seed = async () => {

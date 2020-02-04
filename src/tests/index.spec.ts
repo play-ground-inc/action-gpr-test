@@ -65,7 +65,9 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await server.stop();
+  // await server.stop();
+  // console.log(typeof server.stop)
+  // await conn.dropDatabase();
   await conn.close()
 });
 
