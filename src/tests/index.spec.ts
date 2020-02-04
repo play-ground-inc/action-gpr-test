@@ -25,7 +25,7 @@ afterAll(async () => {
   // await apolloServer.stop();
   console.log('Inside after all');
 
-  console.log(typeof apolloServer);
+  console.log(typeof conn);
   await conn.dropDatabase();
 
   await conn.close();
