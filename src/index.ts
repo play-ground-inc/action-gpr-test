@@ -22,14 +22,14 @@ export const bootstrapServer = async () => {
         resolvers: [__dirname + "/**/*.resolver.ts"],
     });
 
-    const server = new ApolloServer({
+    const apolloServer = new ApolloServer({
         schema,
         playground: true,
     });
 
-    server.applyMiddleware({ app });
+    apolloServer.applyMiddleware({ app });
 
-    return { app, server, connection: conn };
+    return { app, apolloServer, connection: conn };
 }
 
 if (require.main === module) {

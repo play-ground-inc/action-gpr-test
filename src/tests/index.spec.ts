@@ -8,7 +8,7 @@ let apolloServer = null;
 let conn = null;
 
 beforeAll(async () => {
-  const { server: createdServer, connection } = await bootstrapServer();
+  const { apolloServer: createdServer, connection } = await bootstrapServer();
 
   console.log('Inside before all');
   console.log(typeof createdServer);
