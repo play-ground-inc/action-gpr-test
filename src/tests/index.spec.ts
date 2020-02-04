@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import { createTestClient } from "apollo-server-integration-testing";
+import { createTestClient } from "apollo-server-testing";
 
 import { bootstrapServer } from "../index";
 import { seedTestDatabase } from "./seed";
@@ -33,7 +33,7 @@ afterAll(async () => {
 
 describe("User Resolver", () => {
   it("should register a new user successfully", async () => {
-    const { query } = createTestClient({ apolloServer });
+    const { query } = createTestClient(apolloServer);
 
     const REGISTER_USER = gql`
       query registerUser {
@@ -42,7 +42,9 @@ describe("User Resolver", () => {
         }
       }
     `;
-    const { data } = await query(REGISTER_USER);
+    const { data } = await query({
+      query: REGISTER_USER
+    });
 
     expect(data.users).toHaveLength(0);
   });
