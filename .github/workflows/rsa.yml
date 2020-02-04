@@ -25,6 +25,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - run: |
+          mkdir src/utils/keys
+          cd src/utils/keys
+          openssl genrsa -out access-token-private.key 512
+          openssl genrsa -out refresh-token-private.key 512
+          openssl rsa -in access-token-private.key -outform PEM -pubout -out access-token-public.key
+          openssl rsa -in access-token-private.key -outform PEM -pubout -out refresh-token-public.key
       - run: yarn install
       - run: yarn test
         env:
