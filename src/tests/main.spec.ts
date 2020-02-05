@@ -1,3 +1,4 @@
+import 'jest-extended';
 import gql from 'graphql-tag';
 import { createTestClient } from 'apollo-server-integration-testing';
 import { bootstrapServer } from '../index';
