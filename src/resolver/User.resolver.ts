@@ -4,7 +4,7 @@ import { User } from '../entity/User';
 @Resolver(User)
 class UserResolver {
   @Query(returns => [User])
-  async Users() {
+  async users() {
     return await User.find();
   }
 }
