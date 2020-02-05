@@ -6,6 +6,8 @@ import { seedTestDatabase } from './seed';
 let server = null;
 let conn = null;
 
+let firstUser = null;
+
 beforeAll(async () => {
   const { apolloServer: createdServer, connection } = await bootstrapServer();
 
@@ -13,6 +15,15 @@ beforeAll(async () => {
   conn = connection;
 
   await seedTestDatabase();
+
+  // Testing querying inside before all
+
+  const { query } = createTestClient({ apolloServer: server });
+  
+  const { data } = await query(gql`query{ users { email }}`);
+
+  const [ user1 ] = data.users;
+  firstUser = user1.email;
 
 });
 
@@ -34,6 +45,7 @@ describe('Account', () => {
     `;
 
     const { data } = await query(TEST_QUERY);
+    console.log(firstUser)
     expect(data.users).toHaveLength(2);
   })
 })
