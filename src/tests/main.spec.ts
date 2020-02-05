@@ -34,6 +34,6 @@ describe('Account', () => {
     `;
 
     const { data } = await query(TEST_QUERY);
-    expect(data).toHaveLength(2);
+    expect(data.users).toHaveLength(2);
   })
 })
